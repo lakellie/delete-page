@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>~*~ !!! WARNING !!! ACCOUNT DELETION ZONE ~*~</title>
+<style>
+  /* ============ GEOCITIES CORE ============ */
+  @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Bungee+Shade&family=Creepster&display=swap');
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background-color: #000020;
+    /* tiled "starfield + caution" background drawn in CSS */
+    background-image:
+      radial-gradient(circle 1px at 20px 30px, #fff 1px, transparent 0),
+      radial-gradient(circle 1px at 60px 70px, #ff0 1px, transparent 0),
+      radial-gradient(circle 1px at 90px 20px, #0ff 1px, transparent 0),
+      repeating-linear-gradient(45deg, #1a0000 0 20px, #2a0000 20px 40px);
+    background-size: 100px 100px, 100px 100px, 100px 100px, 56px 56px;
+    font-family: 'Comic Neue', 'Comic Sans MS', cursive;
+    color: #00ff00;
+    cursor: crosshair;
+    overflow-x: hidden;
+  }
+
+  /* caution-tape borders top & bottom of the whole page */
+  .tape {
+    position: fixed;
+    left: 0; right: 0;
+    height: 26px;
+    z-index: 9999;
+    background: repeating-linear-gradient(45deg, #ffdd00 0 22px, #000 22px 44px);
+    box-shadow: 0 0 12px #000;
+    animation: tapeslide 1.2s linear infinite;
+  }
+  .tape.top { top: 0; }
+  .tape.bottom { bottom: 0; }
+  @keyframes tapeslide { from { background-position: 0 0; } to { background-position: 62px 0; } }
+
+  .wrap {
+    max-width: 860px;
+    margin: 50px auto 60px;
+    padding: 0 12px;
+    text-align: center;
+  }
+
+  /* ============ BLINK + WOBBLE ============ */
+  .blink { animation: blink 0.7s steps(1) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  .wobble { display: inline-block; animation: wobble 0.4s ease-in-out infinite alternate; }
+  @keyframes wobble { from { transform: rotate(-4deg); } to { transform: rotate(4deg); } }
+
+  /* ============ FLAMING TEXT ============ */
+  .flame {
+    font-family: 'Bungee Shade', 'Impact', sans-serif;
+    font-size: clamp(38px, 9vw, 86px);
+    font-weight: 900;
+    line-height: 1.05;
+    color: #ffe000;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    background: linear-gradient(0deg, #ff0000 0%, #ff6a00 25%, #ffae00 50%, #ffe600 75%, #ffffaa 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 4px #ff3c00) drop-shadow(0 0 14px #ff6a00) drop-shadow(0 0 30px #ff0000);
+    animation: flicker 0.12s infinite alternate;
+  }
+  @keyframes flicker {
+    0%   { filter: drop-shadow(0 0 4px #ff3c00) drop-shadow(0 0 14px #ff6a00) drop-shadow(0 0 30px #ff0000); transform: translateY(0) scaleY(1); }
+    100% { filter: drop-shadow(0 0 8px #ffae00) drop-shadow(0 0 22px #ff3c00) drop-shadow(0 0 44px #ff0000); transform: translateY(-2px) scaleY(1.03); }
+  }
+
+  /* ============ RAINBOW TEXT ============ */
+  .rainbow {
+    font-weight: 700;
+    background: linear-gradient(90deg, #ff0000, #ff9900, #ffee00, #33ff00, #00ffee, #2200ff, #ff00ee, #ff0000);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: rainbowshift 2s linear infinite;
+  }
+  @keyframes rainbowshift { to { background-position: 200% center; } }
+
+  /* ============ MARQUEE (css faked) ============ */
+  .marquee {
+    overflow: hidden;
+    white-space: nowrap;
+    border-top: 4px ridge #ff00ff;
+    border-bottom: 4px ridge #ff00ff;
+    background: #000;
+    padding: 6px 0;
+    margin: 14px 0;
+  }
+  .marquee span {
+    display: inline-block;
+    padding-left: 100%;
+    font-size: 20px;
+    font-weight: 700;
+    color: #00ffff;
+    animation: scroll 12s linear infinite;
+  }
+  .marquee.rev span { animation-direction: reverse; color: #ffff00; }
+  @keyframes scroll { to { transform: translateX(-100%); } }
+
+  /* ============ SKULL + SIGNS ============ */
+  .spinner-row { margin: 10px 0; font-size: 54px; }
+  .spin { display: inline-block; animation: spin 1.6s linear infinite; }
+  .spin.rev { animation-direction: reverse; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .pulse { display: inline-block; animation: pulse 0.5s ease-in-out infinite alternate; }
+  @keyframes pulse { to { transform: scale(1.4); } }
+
+  /* ============ BEVEL PANEL ============ */
+  .panel {
+    background: #c0c0c0;
+    color: #000;
+    border: 4px outset #fff;
+    box-shadow: 6px 6px 0 #000;
+    padding: 18px;
+    margin: 22px auto;
+    text-align: left;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  .panel h3 {
+    margin: 0 0 8px;
+    background: navy;
+    color: #fff;
+    padding: 4px 8px;
+    font-family: 'Comic Neue', cursive;
+    border: 2px inset #888;
+  }
+  .panel ul { margin: 8px 0; padding-left: 22px; }
+  .panel li { margin: 6px 0; }
+  .firetext { color: #cc0000; font-weight: 700; }
+
+  /* ============ HR RAINBOW ============ */
+  .hr {
+    height: 8px;
+    border: 0;
+    margin: 18px 0;
+    background: linear-gradient(90deg, red, orange, yellow, green, cyan, blue, violet);
+    box-shadow: 0 0 10px #fff;
+  }
+
+  /* ============ CHECKBOX ============ */
+  .agree {
+    font-size: 18px;
+    font-weight: 700;
+    color: #ff0;
+    background: #800;
+    display: inline-block;
+    padding: 10px 16px;
+    border: 3px dashed #ff0;
+    margin: 14px 0;
+    cursor: pointer;
+  }
+  .agree input { transform: scale(1.8); margin-right: 10px; vertical-align: middle; cursor: pointer; }
+
+  /* ============ BUTTONS ============ */
+  .btnrow { margin: 18px 0; display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; }
+  button {
+    font-family: 'Impact', 'Comic Neue', sans-serif;
+    cursor: pointer;
+    border: 4px outset;
+    padding: 16px 22px;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  button:active { border-style: inset; }
+  .delete-btn {
+    background: #ff0000;
+    color: #fff;
+    border-color: #ff8888 #660000 #660000 #ff8888;
+    text-shadow: 2px 2px 0 #000;
+    animation: dangerpulse 0.6s ease-in-out infinite alternate;
+  }
+  .delete-btn:disabled {
+    background: #777; color: #ccc; cursor: not-allowed;
+    animation: none; border-color: #999 #444 #444 #999;
+  }
+  @keyframes dangerpulse {
+    from { box-shadow: 0 0 4px #ff0000, 0 0 0 #ff0; }
+    to   { box-shadow: 0 0 22px #ff0000, 0 0 40px #ff6a00; }
+  }
+  .back-btn {
+    background: #00cc00;
+    color: #000;
+    border-color: #88ff88 #006600 #006600 #88ff88;
+    text-shadow: 1px 1px 0 #fff;
+    animation: safepulse 1s ease-in-out infinite alternate;
+  }
+  @keyframes safepulse {
+    from { box-shadow: 0 0 4px #0f0; }
+    to   { box-shadow: 0 0 20px #0f0; }
+  }
+
+  /* ============ COUNTER ============ */
+  .counter {
+    display: inline-block;
+    background: #000;
+    border: 3px ridge #0f0;
+    padding: 4px 8px;
+    font-family: 'Courier New', monospace;
+    color: #0f0;
+    font-size: 22px;
+    letter-spacing: 4px;
+  }
+
+  /* ============ CONSTRUCTION ============ */
+  .construct {
+    display: inline-block;
+    background: repeating-linear-gradient(45deg, #ffdd00 0 12px, #000 12px 24px);
+    color: #fff;
+    font-weight: 700;
+    padding: 6px 14px;
+    border: 3px solid #fff;
+    text-shadow: 2px 2px 0 #000, -2px -2px 0 #000;
+    transform: rotate(-3deg);
+    margin: 6px;
+  }
+
+  .small { font-size: 13px; color: #88f; }
+  .award { display:inline-block; margin: 6px; font-size: 13px; background:#000; border:2px outset #ff0; color:#ff0; padding:6px 10px; }
+
+  /* sparkle cursor trail */
+  .sparkle { position: fixed; pointer-events: none; z-index: 99999; font-size: 16px; animation: fade 0.8s forwards; }
+  @keyframes fade { to { opacity: 0; transform: translateY(-24px) scale(0.3); } }
+
+  /* final overlay */
+  #overlay {
+    display: none;
+    position: fixed; inset: 0; z-index: 100000;
+    background: rgba(0,0,0,0.92);
+    color: #f00;
+    align-items: center; justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    padding: 20px;
+  }
+</style>
+</head>
+<body>
+<div class="tape top"></div>
+<div class="tape bottom"></div>
+
+<div class="wrap">
+
+  <div class="spinner-row">
+    <span class="spin">☢️</span>
+    <span class="pulse">⚠️</span>
+    <span class="spin rev">💀</span>
+    <span class="pulse">⚠️</span>
+    <span class="spin">☢️</span>
+  </div>
+
+  <div class="flame wobble">!! DANGER !!</div>
+  <div class="flame">ACCOUNT<br>DELETION</div>
+
+  <div class="marquee"><span>🔥🔥🔥 YOU ARE ABOUT TO PERMANENTLY DELETE YOUR ACCOUNT FOREVER AND EVER !!! THERE IS NO UNDO !!! NO TAKE-BACKSIES !!! 🔥🔥🔥 &nbsp;&nbsp;&nbsp; THINK ABOUT IT REAL HARD BEFORE YOU CLICK THAT BUTTON OK ??? &nbsp;&nbsp;&nbsp; 💀💀💀</span></div>
+
+  <h1 class="rainbow blink" style="font-size:34px;">THIS CANNOT BE UNDONE!!!1!</h1>
+
+  <p style="font-size:20px; color:#fff; font-weight:700;">
+    By clicking the big <span class="firetext">RED BUTTON OF DOOM</span> below, your account
+    and <span class="rainbow">EVERYTHING IN IT</span> will be
+    <span class="flame" style="font-size:26px;">VAPORIZED</span> from the internet
+    <span class="blink" style="color:#ff0;">PERMANENTLY!!!</span>
+  </p>
+
+  <hr class="hr">
+
+  <div class="panel">
+    <h3>💣 WHAT WILL BE ANNIHILATED:</h3>
+    <ul>
+      <li>🗑️ <span class="firetext">Your entire profile</span> — POOF! Gone!</li>
+      <li>📸 <span class="firetext">All your photos &amp; uploads</span> — into the void!</li>
+      <li>💬 <span class="firetext">Every message you ever sent</span> — DELETED!</li>
+      <li>👫 <span class="firetext">Your friends list / followers</span> — erased!</li>
+      <li>⭐ <span class="firetext">Your username</span> — released into the wild FOREVER!</li>
+      <li>💾 <span class="firetext">Any data we definitely cannot recover</span> — kaput!</li>
+    </ul>
+    <p style="text-align:center; font-size:18px; font-weight:700; color:navy;">
+      ⏳ This action is <u>100% IRREVERSIBLE</u>. No backups. No mercy. No refunds. ⏳
+    </p>
+  </div>
+
+  <div class="marquee rev"><span>⬇️⬇️⬇️ SCROLL DOWN TO MAKE YOUR FINAL DECISION ⬇️⬇️⬇️ &nbsp;&nbsp; ARE YOU ABSOLUTELY POSITIVELY SUPER DUPER SURE ??? &nbsp;&nbsp; ⬇️⬇️⬇️</span></div>
+
+  <div style="margin: 18px 0;">
+    <span class="construct">🚧 POINT OF NO RETURN 🚧</span>
+    <span class="construct">🚧 LAST CHANCE 🚧</span>
+  </div>
+
+  <hr class="hr">
+
+  <label class="agree wobble">
+    <input type="checkbox" id="agree" onchange="toggleDelete()">
+    YES, I understand my account will be GONE 4EVER!!!
+  </label>
+
+  <div class="btnrow">
+    <button class="back-btn" onclick="goBack()">🏃‍♂️ NO!! TAKE ME BACK!! 🏃‍♀️</button>
+    <button class="delete-btn" id="deleteBtn" disabled onclick="confirmDelete()">💀 DELETE MY ACCOUNT FOREVER 💀</button>
+  </div>
+
+  <hr class="hr">
+
+  <p class="small">
+    You are visitor number
+    <span class="counter">0&nbsp;0&nbsp;1&nbsp;3&nbsp;3&nbsp;7</span>
+    to the deletion zone since 1999!!
+  </p>
+
+  <div>
+    <span class="award">★ Best Warning Page 2003 ★</span>
+    <span class="award">☆ Netscape Optimized ☆</span>
+    <span class="award">⚡ 800x600 ⚡</span>
+  </div>
+
+  <p class="small" style="margin-top:20px;">
+    🌐 part of the <span class="rainbow">DANGEROUS DECISIONS WEBRING</span> 🌐<br>
+    [ &lt; PREV ] [ RANDOM ] [ NEXT &gt; ]<br>
+    <span class="blink">Sign my guestbook!!</span> · best viewed in Internet Explorer 5
+  </p>
+
+</div>
+
+<!-- FINAL DOOM OVERLAY -->
+<div id="overlay">
+  <div class="flame" style="font-size:46px;">DELETING...</div>
+  <div class="spinner-row"><span class="spin">💀</span><span class="spin rev">🔥</span><span class="spin">💀</span></div>
+  <p style="color:#fff; font-size:20px; max-width:480px;" id="overlayText">
+    Just kidding!! This is a demo page. <span class="blink">No actual account was harmed.</span><br><br>
+    Wire the real button up to your backend if you dare. 😈
+  </p>
+  <button class="back-btn" onclick="document.getElementById('overlay').style.display='none'">PHEW, CLOSE THIS</button>
+</div>
+
+<script>
+  function toggleDelete() {
+    document.getElementById('deleteBtn').disabled = !document.getElementById('agree').checked;
+  }
+
+  function goBack() {
+    alert("👍 GREAT CHOICE!! Your account lives to see another day!! 🎉🎉🎉");
+  }
+
+  // multi-stage "are you SURE" gauntlet
+  function confirmDelete() {
+    if (!confirm("⚠️ ARE YOU SURE??? ⚠️\n\nThis is PERMANENT and CANNOT be undone!!!")) return;
+    if (!confirm("🔥 NO SERIOUSLY. ARE YOU *REALLY* SURE?? 🔥\n\nEverything will be gone forever. Click OK to keep going to your doom.")) return;
+    if (!confirm("💀 LAST WARNING!!! 💀\n\nThere is NO undo button after this. Type-of-thing.\n\nClick OK to PERMANENTLY DELETE.")) return;
+    var typed = prompt("To confirm, type DELETE in all caps:");
+    if (typed !== "DELETE") {
+      alert("Phew! You didn't type DELETE. Your account is safe... for now. 😅");
+      return;
+    }
+    document.getElementById('overlay').style.display = 'flex';
+  }
+
+  // sparkle cursor trail
+  document.addEventListener('mousemove', function(e) {
+    if (Math.random() > 0.6) {
+      var s = document.createElement('div');
+      s.className = 'sparkle';
+      s.textContent = ['✨','🔥','⭐','💥','⚡'][Math.floor(Math.random()*5)];
+      s.style.left = e.clientX + 'px';
+      s.style.top = e.clientY + 'px';
+      document.body.appendChild(s);
+      setTimeout(function(){ s.remove(); }, 800);
+    }
+  });
+</script>
+</body>
+</html>
